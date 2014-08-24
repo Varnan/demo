@@ -1,0 +1,38 @@
+<html>
+
+<head>
+
+<h1>LOGIN</h1>
+
+</head>
+
+<body>
+
+{% if request.user.is_authenticated %}
+<h5>{{request.user}} | <a href="{%url 'logout' %}" >Logout</a></h5>
+
+{%endif%}
+
+<form class="form-vertical login-form"  action='?next={{ next|default:"/accounts/login/" }}'  method="post">{%csrf_token%}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<p> Username : <input type="text" name="username" /> </p>
+
+<p> Password : <input type="password" name="password" /> </p>
+
+<p> <button type="submit"> Login</button>
+
+</form>
+
+
+
+
+
+</body>
+
+
+
+</html>
